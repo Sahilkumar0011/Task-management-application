@@ -106,10 +106,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 You can customize the repository URL in the `git clone` command and add more details as required.
 ```
 
-### Explanation:
 
-- **Set up locally**: Details the steps to clone the repo, install dependencies, set environment variables, and run the app.
-- **Folder structure**: Provides an overview of how the project is organized.
-- **Bonus features**: Describes the implemented search functionality, and Swagger documentation.
-
-You can customize the repository URL in the `git clone` command and add more details as required.
