@@ -1,0 +1,187 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Task Management API",
+    "description": "API documentation for the Task Management Application"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "schemes": ["http"],
+  "paths": {
+    "/tasks": {
+      "get": {
+        "summary": "Get all tasks",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "type": "string",
+            "description": "Filter tasks by status"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "type": "string",
+            "description": "Search tasks by title"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of tasks",
+            "examples": {
+              "application/json": [
+                {
+                  "_id": "taskId1",
+                  "title": "Design the homepage",
+                  "description": "Work on the homepage layout and structure",
+                  "status": "Pending",
+                  "createdAt": "2025-01-16T00:00:00.000Z",
+                  "updatedAt": "2025-01-16T00:00:00.000Z"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a task",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Task created",
+            "examples": {
+              "application/json": {
+                "_id": "taskId1",
+                "title": "Design the homepage",
+                "description": "Work on the homepage layout and structure",
+                "status": "Pending",
+                "createdAt": "2025-01-16T00:00:00.000Z",
+                "updatedAt": "2025-01-16T00:00:00.000Z"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/{id}": {
+      "get": {
+        "summary": "Get a single task",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Task ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task details",
+            "examples": {
+              "application/json": {
+                "_id": "taskId1",
+                "title": "Design the homepage",
+                "description": "Work on the homepage layout and structure",
+                "status": "Pending",
+                "createdAt": "2025-01-16T00:00:00.000Z",
+                "updatedAt": "2025-01-16T00:00:00.000Z"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a task",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Task ID"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task updated",
+            "examples": {
+              "application/json": {
+                "_id": "taskId1",
+                "title": "Updated task title",
+                "description": "Updated description",
+                "status": "Completed",
+                "createdAt": "2025-01-16T00:00:00.000Z",
+                "updatedAt": "2025-01-16T00:00:00.000Z"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a task",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Task ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task deleted",
+            "examples": {
+              "application/json": {
+                "message": "Task deleted successfully"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Task": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Title of the task",
+          "example": "Design the homepage"
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the task",
+          "example": "Work on the homepage layout and structure"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Pending", "In Progress", "Completed"],
+          "description": "Current status of the task",
+          "example": "Pending"
+        }
+      },
+      "required": ["title", "status"]
+    }
+  }
+}
